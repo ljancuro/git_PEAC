@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+ <book xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude" xml:lang="en" version="5.0">
+   <info>
+     <title>PEAC - Proof Enabled Analysis Cluster</title>
+     <author>
+       <firstname>Martin</firstname>
+       <surname>Vala</surname>
+     </author>
+     <copyright>
+       <year>2011</year>
+       <holder>Martin Vala</holder>
+     </copyright>
+   </info>
+   <chapter xml:id="Introduction">
+     <title>Introduction</title>
+     <para>PROOF is ...</para>
+     <para>PoD is ...</para>
+     <para>PEAC is ...</para>
+   </chapter>
+   <chapter xml:id="Requirements">
+     <title>Requirements</title>
+     <para>To run PEAC you need to have follwing packages installed.</para>
+     <para>Fedora and Scientific Linux :
+       <screen><command>yum install openssl-devel gcc gcc-c++ gcc-gfortran make binutils libX11-devel libXpm-devel libXft-devel libXext-devel boost-devel git subversion</command></screen>
+     </para>
+     <para>Ububtu/Kubuntu :
+       <screen><command>apt-get update</command>
+<command>apt-get install xorg-dev libboost-all-dev gcc g++ nice make cmake git subversion</command></screen>
+     </para>
+   </chapter>
+   <chapter xml:id="Installation">
+     <title>Installation</title>
+     <para>Here is installation of PEAC do it as user and NOT as superuser</para>
+     <sect1 xml:id="DownalodPeacScript"> 
+       <title>Download peac script</title>
+       <screen><command >mkdir -p <replaceable class="cmd-input">~/PEAC</replaceable></command>
+<command>cd <replaceable class="cmd-input">~/PEAC</replaceable></command>
+<command>wget http://mon1.saske.sk/peac/peac</command>
+<command>chmod +x peac</command></screen>
+     </sect1>
+     <sect1 xml:id="RunPeacScriptFirstTime">
+       <title>Run peac scripts for the first time</title>
+       <screen><command>./peac</command></screen>
+       <para>And you should see following output.</para>
+       <note>You have to enter follwing parameters: 'PEAC name', 'admin name' and 'admin email'</note>
+       <screen class="console-output">
+alike@pcalike04:~/PEAC$ ./peac
+PEAC version 0.0
+Creating default /home/alike/PEAC/peac.cf file ...
+Creating default /home/alike/PEAC/sw/peac-base.cf file ...
+Creating default /home/alike/PEAC/sw/peac-build.cf file ...
+Enter your PEAC name: <replaceable class="cmd-input">ALIKE</replaceable>
+Enter your admin name: <replaceable class="cmd-input">Martin Vala</replaceable>
+Enter your admin email: <replaceable class="cmd-input">Martin.Vala@cern.ch</replaceable>
+Doing sync
+Doing sync scripts ...
+Doing sync peac-base ...
+Doing sync VO_PEAC ...
+Doing sync VO_ALICE ...
+Doing sync VO_ALICE_DEV ...
+./peac &lt;mode&gt;
+  modes :
+          cmd
+          info
+          mon
+          proof
+          sw
+          xrd
+	</screen>
+     </sect1>
+     <sect1 xml:id="RunPeacScriptSwSyncFirstTime">
+       <title>Do software sync</title>
+       <screen><command>./peac init master</command></screen>
+       <screen class="console-output">
+alike@pcalike04:/home/alike/PEAC$ ./peac init master
+PEAC version 0.0
+Doing Init master ...
+
+Enter ROOT version [default : v5-30-01 ]:
+PEAC version 0.0
+[VO_PEAC@Xrootd::3.0.4] installing [/home/alike/PEAC/sw/tmp/ubuntu-x86_64-4.5.2/VO_PEAC/Xrootd/3.0.4/pbuild.log]
+  [VO_PEAC@Xrootd::3.0.4] binary_downlaod [ SKIPPED ]
+  [VO_PEAC@Xrootd::3.0.4] download [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] unpack [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] make_clean [ SKIPPED ]
+  [VO_PEAC@Xrootd::3.0.4] configure [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] compile [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] install [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] peac_generate_env [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] generate_env [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] create_archive [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] generate_md5 [ OK ]
+  [VO_PEAC@Xrootd::3.0.4] binary_send [ SKIPPED ]
+  [VO_PEAC@Xrootd::3.0.4] cleanup [ OK ]
+[VO_PEAC@Xrootd::3.0.4] installed
+/home/alike/PEAC/sw/ubuntu-x86_64-4.5.2/VO_PEAC/Xrootd/3.0.4/bin/xrdcp
+SW xrootd is running ...
+This is master. Skipping sync ...
+==> Doing sync from file /home/alike/PEAC/sw/repos/VO_PEAC/soft.conf
+PEAC version 0.0
+SW xrootd is running ...
+[VO_PEAC@Xrootd::3.0.4] installed
+
+source /home/alike/PEAC/sw/ubuntu-x86_64-4.5.2/VO_PEAC/Xrootd/3.0.4/peac-env.sh
+
+==> DONE /home/alike/PEAC/sw/repos/VO_PEAC/soft.conf
+==> Doing sync from file /home/alike/PEAC/sw/repos/VO_ALIKE/soft.conf
+PEAC version 0.0
+SW xrootd is running ...
+
+[VO_PEAC@ApMon_cpp::2.2.7] installing [/home/alike/PEAC/sw/tmp/ubuntu-x86_64-4.5.2/VO_PEAC/ApMon_cpp/2.2.7/pbuild.log]
+  [VO_PEAC@ApMon_cpp::2.2.7] binary_downlaod [ SKIPPED ]
+  [VO_PEAC@ApMon_cpp::2.2.7] download [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] unpack [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] make_clean [ SKIPPED ]
+  [VO_PEAC@ApMon_cpp::2.2.7] configure [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] compile [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] install [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] peac_generate_env [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] generate_env [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] create_archive [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] generate_md5 [ OK ]
+  [VO_PEAC@ApMon_cpp::2.2.7] binary_send [ SKIPPED ]
+  [VO_PEAC@ApMon_cpp::2.2.7] cleanup [ OK ]
+[VO_PEAC@ApMon_cpp::2.2.7] installed
+[VO_PEAC@ROOT::v5-30-01] installing [/home/alike/PEAC/sw/tmp/ubuntu-x86_64-4.5.2/VO_PEAC/ROOT/v5-30-01/pbuild.log]
+  [VO_PEAC@ROOT::v5-30-01] binary_downlaod [ SKIPPED ]
+  [VO_PEAC@ROOT::v5-30-01] download [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] unpack [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] make_clean [ SKIPPED ]
+  [VO_PEAC@ROOT::v5-30-01] configure [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] compile [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] install [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] peac_generate_env [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] generate_env [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] create_archive [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] generate_md5 [ OK ]
+  [VO_PEAC@ROOT::v5-30-01] binary_send [ SKIPPED ]
+  [VO_PEAC@ROOT::v5-30-01] cleanup [ OK ]
+[VO_PEAC@ROOT::v5-30-01] installed
+
+source /home/alike/PEAC/sw/ubuntu-x86_64-4.5.2/VO_PEAC/ROOT/v5-30-01/peac-env.sh
+
+==> DONE /home/alike/PEAC/sw/repos/VO_ALIKE/soft.conf
+
+All OK
+</screen>
+     </sect1>
+   </chapter>
+   <chapter xml:id="Monitoring">
+   <title>PEAC Monitoring</title>
+   <sect1 xml:id="MonitoringCERN">
+     <title>Inside CERN</title>
+     <para>Monitoring is at</para>
+     <screen><command> http://lxbuild094.cern.ch:8080</command></screen>
+   </sect1>
+   <sect1 xml:id="MonitoringCERNTunel">
+     <title>Outside CERN</title>
+   <para>If you are outside of CERN you can do tunnel with following command:</para>
+   <screen><command>ssh -f lxplus.cern.ch -N -L 8080:lxbuild094.cern.ch:8080</command></screen>
+   <para>Then you access web page by</para>
+   <screen><command> http://llocalhost:8080</command></screen>
+ </sect1>
+ </chapter>
+</book>
